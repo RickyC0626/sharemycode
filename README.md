@@ -11,7 +11,7 @@ ShareMyCode 2.0 - An alternative to codeshare.io
     - [X] Detect using selected language mode
   - [X] Line numbers
   - [ ] File explorer
-  - [ ] Opened file header tabs
+  - [/] Opened file header tabs
 - [ ] Real-time collaboration (using Liveblocks)
   - [ ] User list
   - [ ] [Live carets](https://liveblocks.io/presence) in editor
