@@ -7,7 +7,12 @@ ShareMyCode 2.0 - An alternative to codeshare.io
 
 - [ ] Code editor
   - [ ] Syntax highlighting
+    - [ ] Detect using file name
+    - [ ] Detect using selected language mode
   - [ ] Line numbers
+  - [ ] File explorer
+  - [ ] Opened file header tabs
 - [ ] Real-time collaboration (using Liveblocks)
   - [ ] User list
-  - [ ] Live cursors
+  - [ ] [Live carets](https://liveblocks.io/presence) in editor
+  - [ ] [Live avatar stack](https://liveblocks.io/presence) in opened file header and file explorer
