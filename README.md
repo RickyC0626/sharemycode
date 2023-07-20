@@ -5,11 +5,11 @@ ShareMyCode 2.0 - An alternative to codeshare.io
 
 ## Roadmap
 
-- [ ] Code editor
-  - [ ] Syntax highlighting
+- [X] Code editor (using CodeMirror)
+  - [X] Syntax highlighting
     - [ ] Detect using file name
-    - [ ] Detect using selected language mode
-  - [ ] Line numbers
+    - [X] Detect using selected language mode
+  - [X] Line numbers
   - [ ] File explorer
   - [ ] Opened file header tabs
 - [ ] Real-time collaboration (using Liveblocks)
