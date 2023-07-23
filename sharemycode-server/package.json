@@ -1,0 +1,51 @@
+{
+  "name": "sharemycode-server",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.ts",
+  "scripts": {
+    "pre-commit": "yarn test && npx lint-staged",
+    "start": "tsc && node dist/index.js",
+    "dev": "ts-node-dev --respawn -- src/main.ts",
+    "test": "jest --coverage --passWithNoTests",
+    "test:dev": "jest --watch --verbose",
+    "prettify": "prettier --write src/**/*.ts",
+    "lint": "eslint src/**/*.ts && prettier --check src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.ts": [
+      "eslint --fix",
+      "prettier --write -u"
+    ]
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "helmet": "^7.0.0",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "@types/helmet": "^4.0.0",
+    "@types/jest": "^29.5.3",
+    "@types/morgan": "^1.9.4",
+    "@types/node": "^20.4.4",
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint": "^8.45.0",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.6.1",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
+    "ts-jest": "^29.1.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  }
+}

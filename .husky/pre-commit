@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Check changed files between server and client
+# If server has no changes, no need to run its pre-commit script
+# If client has no changes, no need to run client pre-commit script
+if [ -n "$(git status sharemycode-server --porcelain --untracked-files=no)" ]; then
+  yarn pre-commit:server
+fi
+
+if [ -n "$(git status sharemycode-client --porcelain --untracked-files=no)" ]; then
+  yarn pre-commit:client
+fi

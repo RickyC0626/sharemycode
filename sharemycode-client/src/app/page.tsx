@@ -159,7 +159,7 @@ function FileExplorer({ isOpen }: { isOpen: boolean }) {
       {/* List of folders and files */}
       <ul>
         {folders.map((folder, idx) => (
-          <li key={`folder-${idx}`} className="flex gap-1 place-items-center px-2 hover:bg-zinc-500/20 cursor-pointer">
+          <li key={`folder-${idx}`} className="flex gap-1 place-items-center py-0.5 px-2 hover:bg-zinc-500/20 cursor-pointer">
             <PiCaretRightBold className="w-4 h-4 text-zinc-500" />
             <span className="text-zinc-300 text-sm select-none">
               {folder.folderName}
@@ -167,7 +167,7 @@ function FileExplorer({ isOpen }: { isOpen: boolean }) {
           </li>
         ))}
         {files.map((file, idx) => (
-          <li key={`file-${idx}`} className="px-2 hover:bg-zinc-500/20 cursor-pointer">
+          <li key={`file-${idx}`} className="py-0.5 px-2 hover:bg-zinc-500/20 cursor-pointer">
             <span className="text-zinc-300 text-sm select-none">{file.fileName}</span>
           </li>
         ))}
