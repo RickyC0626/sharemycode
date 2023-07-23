@@ -9,6 +9,9 @@ import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { IoMdDocument } from "react-icons/io";
 import { VscNewFile, VscNewFolder } from "react-icons/vsc";
 import { PiCaretRightBold } from "react-icons/pi";
+import {
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue
+} from "@/components/ui/select";
 
 const editors = [
   {
@@ -57,38 +60,45 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-[#111111]">
-      <div className="flex">
-        <div className="flex">
-          <SideMenu
-            toggleFileExplorer={toggleFileExplorer}
-            isFileExplorerOpen={isFileExplorerOpen}
-          />
-          <FileExplorer isOpen={isFileExplorerOpen} />
-        </div>
-        <div className="grow h-screen flex flex-col">
-          <div className="flex gap-1">
-            {editors.map((editor, idx) => (
-              <button
-                key={idx}
-                className={`
-                  w-fit px-3 py-2 ${currEditor === idx ? "bg-[#1e1e1e]" : "bg-[#353535]"}
-                `}
-                onClick={() => setCurrEditor(idx)}
-              >
-                <span className="text-zinc-300 font-bold">{editor.tabName}</span>
-              </button>
-            ))}
+      {/* Whole screen */}
+      <div className="h-screen flex flex-col">
+        {/* Main content */}
+        <div className="grow flex">
+          {/* Sidebar & menu */}
+          <div className="flex">
+            <SideMenu
+              toggleFileExplorer={toggleFileExplorer}
+              isFileExplorerOpen={isFileExplorerOpen}
+            />
+            <FileExplorer isOpen={isFileExplorerOpen} />
           </div>
-          <CodeMirror
-            value={editors[currEditor].codemirror.value}
-            height="100%"
-            theme={vscodeDark}
-            extensions={editors[currEditor].codemirror.extensions}
-            autoFocus
-            className="grow"
-            onStatistics={(data) => data.tabSize = 2}
-          />
+          {/* Editor and tabs */}
+          <div className="grow flex flex-col">
+            <div className="flex gap-1">
+              {editors.map((editor, idx) => (
+                <button
+                  key={idx}
+                  className={`
+                    w-fit px-3 py-2 ${currEditor === idx ? "bg-[#1e1e1e]" : "bg-[#353535]"}
+                  `}
+                  onClick={() => setCurrEditor(idx)}
+                >
+                  <span className="text-zinc-300 font-bold">{editor.tabName}</span>
+                </button>
+              ))}
+            </div>
+            <CodeMirror
+              value={editors[currEditor].codemirror.value}
+              height="100%"
+              theme={vscodeDark}
+              extensions={editors[currEditor].codemirror.extensions}
+              autoFocus
+              className="grow"
+              onStatistics={(data) => data.tabSize = 2}
+            />
+          </div>
         </div>
+        <StatusBar />
       </div>
     </main>
   );
@@ -102,7 +112,7 @@ function SideMenu({
   isFileExplorerOpen: boolean;
 }) {
   return (
-    <div className="h-screen w-fit bg-[#1e1e1e]">
+    <div className="w-fit bg-[#1e1e1e]">
       <button
         className={`
           p-3 relative before:content-[''] before:absolute before:top-0
@@ -141,7 +151,7 @@ function FileExplorer({ isOpen }: { isOpen: boolean }) {
   };
 
   return (
-    <div className={`h-screen ${isOpen ? "w-[16rem]" : "w-0"} overflow-auto whitespace-nowrap`}>
+    <div className={`${isOpen ? "w-[16rem]" : "w-0"} overflow-auto whitespace-nowrap`}>
       {/* Header */}
       <div className="flex border-b-2 border-b-[#1e1e1e] place-items-center justify-between">
         <span className="p-2 text-zinc-300 uppercase font-bold text-sm select-none">
@@ -173,5 +183,27 @@ function FileExplorer({ isOpen }: { isOpen: boolean }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+function StatusBar() {
+  return (
+    <section className="
+      w-full h-8 bg-[#353535] flex gap-2 justify-end place-items-center
+    ">
+      <Select>
+        <SelectTrigger className="
+          h-full w-fit hover:bg-zinc-600/60 text-zinc-300 border-none
+          rounded-none focus:ring-0 focus:ring-offset-0
+        ">
+          <SelectValue placeholder="Language" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="HTML">HTML</SelectItem>
+          <SelectItem value="CSS">CSS</SelectItem>
+          <SelectItem value="JavaScript">JavaScript</SelectItem>
+        </SelectContent>
+      </Select>
+    </section>
   );
 }
