@@ -1,7 +1,7 @@
 import React from "react";
-import { Avatar } from "./Avatar";
+import { Avatar, AvatarProps } from "./Avatar";
 import { useOthersMapped, useSelf } from "../../../liveblocks.config";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, HTMLMotionProps, motion } from "framer-motion";
 
 /**
  * This file shows how to add live avatars like you can see them at the top right of a Google Doc or a Figma file.
@@ -14,7 +14,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const MAX_OTHERS = 3;
 
-const animationProps = {
+export const defaultAnimationProps: HTMLMotionProps<"div"> = {
   initial: { width: 0, transformOrigin: "left" },
   animate: { width: "auto", height: "auto" },
   exit: { width: 0 },
@@ -27,14 +27,20 @@ const animationProps = {
   },
 };
 
-const avatarProps = {
+export const defaultAvatarProps: Pick<AvatarProps, "style" | "size" | "outlineWidth" | "outlineColor"> = {
   style: { marginLeft: "-0.45rem" },
   size: 48,
   outlineWidth: 3,
   outlineColor: "white",
 };
 
-export default function LiveAvatars() {
+export default function LiveAvatars({
+  avatarProps = defaultAvatarProps,
+  animationProps = defaultAnimationProps
+}: {
+  avatarProps?: Pick<AvatarProps, "style" | "size" | "outlineWidth" | "outlineColor">;
+  animationProps?: HTMLMotionProps<"div">;
+}) {
   //
   // RATIONALE:
   // Using useOthersMapped here and only selecting/subscribing to the "info"
@@ -52,10 +58,8 @@ export default function LiveAvatars() {
     <div
       style={{
         minHeight: avatarProps.size + "px",
-        display: "flex",
-        paddingLeft: "0.75rem",
-        overflow: "hidden",
       }}
+      className="flex pl-3 overflow-hidden"
     >
       <AnimatePresence>
         {hasMoreUsers ? (

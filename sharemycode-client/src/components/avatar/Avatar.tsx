@@ -32,7 +32,7 @@ type MoreProps = BothProps & {
   color?: never;
 };
 
-type AvatarProps = PictureProps | MoreProps;
+export type AvatarProps = PictureProps | MoreProps;
 
 /**
  * Can present avatars as gradients with letters, as pictures, or as a count (e.g +3)

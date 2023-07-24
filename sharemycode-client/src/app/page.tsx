@@ -12,6 +12,8 @@ import { PiCaretRightBold } from "react-icons/pi";
 import {
   Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from "@/components/ui/select";
+import LiveAvatars, { defaultAvatarProps } from "@/components/avatar/LiveAvatars";
+import { RoomProvider } from "../../liveblocks.config";
 
 const editors = [
   {
@@ -59,48 +61,76 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-[#111111]">
-      {/* Whole screen */}
-      <div className="h-screen flex flex-col">
-        {/* Main content */}
-        <div className="grow flex">
-          {/* Sidebar & menu */}
-          <div className="flex">
-            <SideMenu
-              toggleFileExplorer={toggleFileExplorer}
-              isFileExplorerOpen={isFileExplorerOpen}
-            />
-            <FileExplorer isOpen={isFileExplorerOpen} />
-          </div>
-          {/* Editor and tabs */}
-          <div className="grow flex flex-col">
-            <div className="flex gap-1">
-              {editors.map((editor, idx) => (
-                <button
-                  key={idx}
-                  className={`
-                    w-fit px-3 py-2 ${currEditor === idx ? "bg-[#1e1e1e]" : "bg-[#353535]"}
-                  `}
-                  onClick={() => setCurrEditor(idx)}
-                >
-                  <span className="text-zinc-300 font-bold">{editor.tabName}</span>
-                </button>
-              ))}
+    <RoomProvider id="sharemycode" initialPresence={{}}>
+      <main className="min-h-screen bg-[#111111]">
+        {/* Whole screen */}
+        <div className="h-screen flex flex-col">
+          <Navbar />
+          {/* Main content */}
+          <div className="grow flex">
+            {/* Sidebar & menu */}
+            <div className="flex">
+              <SideMenu
+                toggleFileExplorer={toggleFileExplorer}
+                isFileExplorerOpen={isFileExplorerOpen}
+              />
+              <FileExplorer isOpen={isFileExplorerOpen} />
             </div>
-            <CodeMirror
-              value={editors[currEditor].codemirror.value}
-              height="100%"
-              theme={vscodeDark}
-              extensions={editors[currEditor].codemirror.extensions}
-              autoFocus
-              className="grow"
-              onStatistics={(data) => data.tabSize = 2}
-            />
+            {/* Editor and tabs */}
+            <div className="grow flex flex-col">
+              <div className="flex gap-1">
+                {editors.map((editor, idx) => (
+                  <button
+                    key={idx}
+                    className={`
+                      w-fit px-3 py-2 ${currEditor === idx ? "bg-[#1e1e1e]" : "bg-[#353535]"}
+                    `}
+                    onClick={() => setCurrEditor(idx)}
+                  >
+                    <span className="text-zinc-300 font-bold">{editor.tabName}</span>
+                  </button>
+                ))}
+              </div>
+              <CodeMirror
+                value={editors[currEditor].codemirror.value}
+                height="100%"
+                theme={vscodeDark}
+                extensions={editors[currEditor].codemirror.extensions}
+                autoFocus
+                className="grow"
+                onStatistics={(data) => data.tabSize = 2}
+              />
+            </div>
           </div>
+          <StatusBar />
         </div>
-        <StatusBar />
+      </main>
+    </RoomProvider>
+  );
+}
+
+function Navbar() {
+  return (
+    <div className="
+      w-full h-12 bg-[#111111] grid grid-cols-3 gap-2 p-2 overflow-hidden
+    ">
+      <div className="flex gap-2 justify-start place-items-center">
+        <span className="font-bold text-zinc-200">Menu</span>
       </div>
-    </main>
+      <div className="grid place-items-center">
+        <span className="font-bold text-zinc-200">Organization/Project</span>
+      </div>
+      <div className="flex gap-2 justify-end place-items-center">
+        <LiveAvatars
+          avatarProps={{
+            ...defaultAvatarProps,
+            style: { marginLeft: "-0.3rem" },
+            size: 32,
+            outlineColor: "#353535"
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
