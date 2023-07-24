@@ -426,6 +426,18 @@
     style-mod "^4.0.0"
     w3c-keyname "^2.2.4"
 
+"@emotion/is-prop-valid@^0.8.2":
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/@emotion/is-prop-valid/-/is-prop-valid-0.8.8.tgz#db28b1c4368a259b60a97311d6a952d4fd01ac1a"
+  integrity sha512-u5WtneEAr5IDG2Wv65yhunPSMLIpuKsbuOktRojfrEiEvRyC85LgPMZI63cr7NUqT8ZIGdSVg8ZKGxIug4lXcA==
+  dependencies:
+    "@emotion/memoize" "0.7.4"
+
+"@emotion/memoize@0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@emotion/memoize/-/memoize-0.7.4.tgz#19bf0f5af19149111c40d98bb0cf82119f5d9eeb"
+  integrity sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==
+
 "@eslint-community/eslint-utils@^4.2.0":
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/@eslint-community/eslint-utils/-/eslint-utils-4.4.0.tgz#a23514e8fb9af1269d5f7788aa556798d61c6b59"
@@ -784,6 +796,34 @@
   integrity sha512-XPz6dzuTHlnsbA5M2DZgjflNQ+9Hi5Swhic0RULdp3oOs3rh6bqGZolosVqN/fQIT8uNiepzINJDnS39oweTHQ==
   dependencies:
     "@lezer/common" "^1.0.0"
+
+"@liveblocks/client@1.1.6", "@liveblocks/client@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@liveblocks/client/-/client-1.1.6.tgz#e03b50be61d4b7b445555b80eb7236991b63f734"
+  integrity sha512-rO95ZlwTyqCv8jBSZYmOdTGi+KlHwNkYcJnl5ZnHaEX3Vin/o0ZtdBi3Og8fH5TX8vOI4wIcFM9j1fpaWuzXJA==
+  dependencies:
+    "@liveblocks/core" "1.1.6"
+
+"@liveblocks/core@1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@liveblocks/core/-/core-1.1.6.tgz#8ff710ed5520fa137d4611000ee4ffe834aba9bf"
+  integrity sha512-+ut1Yv4qrQtYD/S9+dnCW5mYf8RWtSOqO6qtqkviii/8ufYVUxCoN27AjJ6qJ65981hhckmhcGtlss1v2XLy+w==
+
+"@liveblocks/node@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@liveblocks/node/-/node-1.1.6.tgz#ebbe123bccf9494a692895ccb57e372495561841"
+  integrity sha512-wnPv48Q7/uwgUS+9Ekx5U9syS/ClAP3WR8JqZZjvhM6hnYLsmGzHJwva09X838HfLMxlJEwoGhA7sq10toavsw==
+  dependencies:
+    node-fetch "^2.6.1"
+
+"@liveblocks/react@^1.1.6":
+  version "1.1.6"
+  resolved "https://registry.yarnpkg.com/@liveblocks/react/-/react-1.1.6.tgz#0d032e5572f2b3646662164193915000a6f548dc"
+  integrity sha512-ws/f4xPd5kNVCVkq2vzuPe/b9GxrucH3GU/y0tS1AMHCb5Z9Pgwbz2XFjm7HgIqXDH73PbpNbACnVprjKwXpsw==
+  dependencies:
+    "@liveblocks/client" "1.1.6"
+    "@liveblocks/core" "1.1.6"
+    use-sync-external-store "^1.2.0"
 
 "@next/env@13.4.10":
   version "13.4.10"
@@ -2496,6 +2536,15 @@ fraction.js@^4.2.0:
   resolved "https://registry.yarnpkg.com/fraction.js/-/fraction.js-4.2.0.tgz#448e5109a313a3527f5a3ab2119ec4cf0e0e2950"
   integrity sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==
 
+framer-motion@^10.13.1:
+  version "10.13.1"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-10.13.1.tgz#f717c924ce9a8927264b41692a870d1366fe296c"
+  integrity sha512-uiKsaLEoySeln3eOPy8wUB3FkNtRRiVga5xJOkgs7C0sHVyvpJajXJFSoabt+emBojgnMQY0epnjl0ppoYPxkQ==
+  dependencies:
+    tslib "^2.4.0"
+  optionalDependencies:
+    "@emotion/is-prop-valid" "^0.8.2"
+
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -3674,6 +3723,13 @@ next@13.4.10:
     "@next/swc-win32-ia32-msvc" "13.4.10"
     "@next/swc-win32-x64-msvc" "13.4.10"
 
+node-fetch@^2.6.1:
+  version "2.6.12"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.12.tgz#02eb8e22074018e3d5a83016649d04df0e348fba"
+  integrity sha512-C/fGU2E8ToujUivIO0H+tpQ6HWo4eEmchoPIoXtxCrVghxdKq+QOHqEZW7tuP3KlV3bC8FRMO5nMCC7Zm1VP6g==
+  dependencies:
+    whatwg-url "^5.0.0"
+
 node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
@@ -4578,6 +4634,11 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
+tr46@~0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/tr46/-/tr46-0.0.3.tgz#8184fd347dac9cdc185992f3a6622e14b9d9ab6a"
+  integrity sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw==
+
 ts-interface-checker@^0.1.9:
   version "0.1.13"
   resolved "https://registry.yarnpkg.com/ts-interface-checker/-/ts-interface-checker-0.1.13.tgz#784fd3d679722bc103b1b4b8030bcddb5db2a699"
@@ -4735,7 +4796,7 @@ use-sidecar@^1.1.2:
     detect-node-es "^1.1.0"
     tslib "^2.0.0"
 
-use-sync-external-store@^1.0.0:
+use-sync-external-store@^1.0.0, use-sync-external-store@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/use-sync-external-store/-/use-sync-external-store-1.2.0.tgz#7dbefd6ef3fe4e767a0cf5d7287aacfb5846928a"
   integrity sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==
@@ -4773,6 +4834,19 @@ watchpack@2.4.0:
   dependencies:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
+
+webidl-conversions@^3.0.0:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-3.0.1.tgz#24534275e2a7bc6be7bc86611cc16ae0a5654871"
+  integrity sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==
+
+whatwg-url@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/whatwg-url/-/whatwg-url-5.0.0.tgz#966454e8765462e37644d3626f6742ce8b70965d"
+  integrity sha512-saE57nupxk6v3HY35+jzBwYa0rKSy0XR8JSxZPwgLr7ys0IBzhGviA1/TUGJLmSVqs8pb9AnvICXEuOHLprYTw==
+  dependencies:
+    tr46 "~0.0.3"
+    webidl-conversions "^3.0.0"
 
 which-boxed-primitive@^1.0.2:
   version "1.0.2"
