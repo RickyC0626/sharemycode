@@ -29,7 +29,7 @@ function useOverrideRoomId(roomId: string) {
   const search = searchParams.get(roomId);
   const overrideRoomId = useMemo(() => {
     return search ? `${roomId}-${search}` : roomId;
-  }, [searchParams, roomId]);
+  }, [searchParams, roomId, search]);
 
   return overrideRoomId;
 }
