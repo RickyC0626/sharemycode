@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
+import { v4 as uuid } from "uuid";
 
 export enum NodeType {
   DIRECTORY,
@@ -8,12 +9,17 @@ export enum NodeType {
 }
 
 export type Node = {
-  name: string;
-  path: string;
-  parent: Node | undefined;
-  type: NodeType;
+  id: string;
+  parentId: string | null;
+  level: number;
+  metadata: {
+    name: string;
+    path: string;
+    description: string;
+    type: NodeType;
+  };
   children: Node[];
-}
+};
 
 export interface FileExplorerState {
   rootNode: Node;
@@ -21,10 +27,15 @@ export interface FileExplorerState {
 
 const initialState: FileExplorerState = {
   rootNode: {
-    name: "root",
-    path: "/root",
-    parent: undefined,
-    type: NodeType.DIRECTORY,
+    id: uuid(),
+    parentId: null,
+    level: 0,
+    metadata: {
+      name: "root",
+      path: "/root",
+      description: "Start of the directory",
+      type: NodeType.DIRECTORY,
+    },
     children: [],
   },
 };
@@ -44,10 +55,46 @@ export const fileExplorerSlice = createSlice({
     // Create a new file in database
     createFile: (state, action: PayloadAction<{ fileName: string }>) => {
       const { fileName } = action.payload;
+
+      const fileNode: Node = {
+        id: uuid(),
+        parentId: state.rootNode.id,
+        level: state.rootNode.level + 1,
+        metadata: {
+          name: fileName,
+          path: `${state.rootNode.metadata.path}/${fileName}`,
+          description: "",
+          type: NodeType.FILE,
+        },
+        children: [],
+      };
+
+      state.rootNode.children = [
+        ...state.rootNode.children,
+        fileNode,
+      ].sort(byDirectoryAndLexicographical);
     },
     // Create a new folder in database
     createFolder: (state, action: PayloadAction<{ folderName: string }>) => {
       const { folderName } = action.payload;
+
+      const folderNode: Node = {
+        id: uuid(),
+        parentId: state.rootNode.id,
+        level: state.rootNode.level + 1,
+        metadata: {
+          name: folderName,
+          path: `${state.rootNode.metadata.path}/${folderName}`,
+          description: "",
+          type: NodeType.DIRECTORY,
+        },
+        children: [],
+      };
+
+      state.rootNode.children = [
+        ...state.rootNode.children,
+        folderNode,
+      ].sort(byDirectoryAndLexicographical);
     },
     // Delete an existing node
     deleteNode: (state) => {
@@ -59,6 +106,20 @@ export const fileExplorerSlice = createSlice({
     },
   },
 });
+
+export function byDirectoryAndLexicographical(a: Node, b: Node) {
+  const aType = a.metadata.type;
+  const bType = b.metadata.type;
+
+  // Directories first
+  if (aType !== bType) return aType === NodeType.DIRECTORY ? -1 : 1;
+
+  const aName = a.metadata.name;
+  const bName = a.metadata.name;
+
+  // Lexicographical order
+  return aName > bName ? -1 : aName < bName ? 1 : 0;
+}
 
 export const selectFileExplorerTree = (state: RootState) => state.fileExplorer.rootNode;
 
