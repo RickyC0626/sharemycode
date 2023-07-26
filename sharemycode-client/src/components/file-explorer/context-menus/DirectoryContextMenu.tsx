@@ -12,7 +12,7 @@ export function DirectoryContextMenu({ trigger }: { trigger: React.ReactNode }) 
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuItem>Rename</ContextMenuItem>
-          <ContextMenuItem>Move</ContextMenuItem>
+          <ContextMenuItem>Move To</ContextMenuItem>
           <ContextMenuItem>Delete</ContextMenuItem>
         </ContextMenuGroup>
       </ContextMenuContent>
