@@ -20,7 +20,7 @@ export function DirectoryList({
   level = 0,
 }: DirectoryListProps): React.ReactNode {
   return (
-    <ul className="overflow-hidden" style={{ marginLeft: level * 8 }}>
+    <ul className={`overflow-hidden ${level > 0 ? "ml-4" : null}`}>
       {nodes.map((node) => (
         <DirectoryListItemWrapper key={node.id} node={node} />
       ))}
