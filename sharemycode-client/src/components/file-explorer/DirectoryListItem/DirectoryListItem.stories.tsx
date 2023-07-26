@@ -5,7 +5,21 @@ import { FaFile, FaFolder } from "react-icons/fa";
 import { PiCaretRightBold } from "react-icons/pi";
 
 const meta: Meta<typeof DirectoryListItem> = {
+  title: "File Explorer/Directory List Item",
   component: DirectoryListItem,
+  tags: ["autodocs"],
+  argTypes: {
+    iconBefore: {
+      table: {
+        disable: true,
+      },
+    },
+    iconAfter: {
+      table: {
+        disable: true,
+      },
+    },
+  },
 };
 
 export default meta;
@@ -13,24 +27,22 @@ export default meta;
 type Story = StoryObj<typeof DirectoryListItem>;
 
 export const Default: Story = {
-  render: () => <DirectoryListItem label="Default" />,
+  args: {
+    label: "Default",
+  },
 };
 
 export const Directory: Story = {
-  render: () => (
-    <DirectoryListItem
-      label="Directory"
-      iconBefore={FaFolder}
-      iconAfter={PiCaretRightBold}
-    />
-  )
+  args: {
+    label: "Directory",
+    iconBefore: FaFolder,
+    iconAfter: PiCaretRightBold
+  },
 };
 
 export const File: Story = {
-  render: () => (
-    <DirectoryListItem
-      label="My File"
-      iconBefore={FaFile}
-    />
-  )
+  args: {
+    label: "My File",
+    iconBefore: FaFile,
+  },
 };
