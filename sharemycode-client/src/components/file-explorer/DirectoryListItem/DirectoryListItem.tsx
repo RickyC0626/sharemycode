@@ -50,7 +50,7 @@ export function DirectoryListItem({
   } satisfies { [K in ElementWidth]: string };
 
   return (
-    <li className={`mb-1 group flex ${widthClass[width]}`} onClick={onClick}>
+    <li className={`my-0.5 group flex ${widthClass[width]}`} onClick={onClick}>
       <button
         className={`
           flex place-items-center w-full py-1.5 px-2 justify-between rounded-md

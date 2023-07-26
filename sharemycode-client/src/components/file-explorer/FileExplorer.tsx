@@ -24,7 +24,7 @@ export function FileExplorer({ isOpen }: { isOpen: boolean }) {
   };
 
   return (
-    <div className={`${isOpen ? "w-[16rem]" : "w-0"} relative h-0 min-h-full overflow-y-auto whitespace-nowrap`}>
+    <div className={`${isOpen ? "w-[17rem]" : "w-0"} relative h-0 min-h-full overflow-y-auto whitespace-nowrap`}>
       {/* Header */}
       <div className="sticky top-0 flex bg-[#111111] border-b-2 border-b-[#1e1e1e] place-items-center justify-between">
         <span className="p-2 text-zinc-300 uppercase font-bold text-sm select-none">

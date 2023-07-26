@@ -47,10 +47,11 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
       />
       <li
         className={`
-          grid ${isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}
+          relative grid ${isActive ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}
           transition-all duration-300
         `}
       >
+        <div className="absolute w-[1px] h-full translate-x-2 bg-zinc-500/20" />
         <DirectoryList
           key={`list-${node.id}`}
           nodes={node.children}
