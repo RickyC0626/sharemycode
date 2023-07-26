@@ -12,6 +12,15 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
+    backgrounds: {
+      default: "dark",
+      values: [
+        {
+          name: "dark",
+          value: "#111111",
+        },
+      ],
+    },
   },
 
   decorators: [
@@ -22,7 +31,7 @@ const preview: Preview = {
         light: 'light',
         dark: 'dark',
       },
-      defaultTheme: 'light',
+      defaultTheme: 'dark',
     }),
   ],
 };
