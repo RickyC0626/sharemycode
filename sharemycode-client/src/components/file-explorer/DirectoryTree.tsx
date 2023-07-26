@@ -1,6 +1,6 @@
-import { Node, NodeType, selectFileExplorerTree } from "@/state/file-explorer/fileExplorerSlice";
+import { Node, selectFileExplorerTree } from "@/state/file-explorer/fileExplorerSlice";
 import { useAppSelector } from "@/state/hooks";
-import { FaFile, FaFolder, FaFolderOpen } from "react-icons/fa";
+import { FaFile, FaFolder } from "react-icons/fa";
 import { PiCaretRightBold } from "react-icons/pi";
 
 export function DirectoryTree() {
@@ -67,10 +67,4 @@ export function FileEntry({ node, className }: { node: Node, className?: string 
       </button>
     </li>
   );
-}
-
-export function DirectoryList() {
-  return (
-    <ul></ul>
-  )
 }

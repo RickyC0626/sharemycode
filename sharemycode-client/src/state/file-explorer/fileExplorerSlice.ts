@@ -12,7 +12,7 @@ export type Node = {
   metadata: {
     name: string;
     path: string;
-    description: string;
+    description?: string;
     type: NodeType;
   };
   children: Node[];

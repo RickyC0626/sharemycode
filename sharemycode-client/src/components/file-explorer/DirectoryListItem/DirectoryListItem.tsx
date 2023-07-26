@@ -1,7 +1,7 @@
 import React from "react";
 import { IconType } from "react-icons/lib";
 
-type ElementWidth = "sm" | "md" | "lg" | "full";
+type ElementWidth = "sm" | "md" | "lg" | "full" | "fit";
 
 interface DirectoryListItemProps {
   /**
@@ -36,6 +36,7 @@ export function DirectoryListItem({
   width = "md",
   iconBefore,
   iconAfter,
+  onClick,
 }: DirectoryListItemProps): React.ReactNode {
   const IconBefore = iconBefore!;
   const IconAfter = iconAfter!;
@@ -45,10 +46,11 @@ export function DirectoryListItem({
     md: "w-64",
     lg: "w-80",
     full: "w-full",
+    fit: "w-fit",
   } satisfies { [K in ElementWidth]: string };
 
   return (
-    <li className={`group flex ${widthClass[width]}`}>
+    <li className={`group flex ${widthClass[width]}`} onClick={onClick}>
       <button
         className={`
           flex place-items-center w-full py-1.5 px-2 justify-between rounded-md
