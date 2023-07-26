@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { DirectoryListItem } from "../DirectoryListItem";
-import { FaFile, FaFolder } from "react-icons/fa";
+import { FaFile, FaFolder, FaFolderOpen } from "react-icons/fa";
 import { PiCaretRightBold } from "react-icons/pi";
 
 const meta: Meta<typeof DirectoryListItem> = {
@@ -9,6 +9,9 @@ const meta: Meta<typeof DirectoryListItem> = {
   component: DirectoryListItem,
   tags: ["autodocs"],
   argTypes: {
+    active: {
+      control: "boolean",
+    },
     iconBefore: {
       table: {
         disable: true,
@@ -36,13 +39,30 @@ export const Directory: Story = {
   args: {
     label: "Directory",
     iconBefore: FaFolder,
-    iconAfter: PiCaretRightBold
+    iconAfter: PiCaretRightBold,
+  },
+};
+
+export const ActiveDirectory: Story = {
+  args: {
+    label: "Directory",
+    active: true,
+    iconBefore: FaFolderOpen,
+    iconAfter: PiCaretRightBold,
   },
 };
 
 export const File: Story = {
   args: {
     label: "My File",
+    iconBefore: FaFile,
+  },
+};
+
+export const ActiveFile: Story = {
+  args: {
+    label: "My File",
+    active: true,
     iconBefore: FaFile,
   },
 };

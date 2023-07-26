@@ -1,15 +1,21 @@
 import React from "react";
 import { IconType } from "react-icons/lib";
 
+type ElementWidth = "sm" | "md" | "lg" | "full";
+
 interface DirectoryListItemProps {
   /**
    * Name of the list item
    */
   label: string;
   /**
+   * If the list item is active
+   */
+  active?: boolean;
+  /**
    * How long the list item should be
    */
-  width?: "sm" | "md" | "lg" | "full";
+  width?: ElementWidth;
   /**
    * Optional icon that displays before label
    */
@@ -26,6 +32,7 @@ interface DirectoryListItemProps {
 
 export function DirectoryListItem({
   label = "List Item",
+  active = false,
   width = "md",
   iconBefore,
   iconAfter,
@@ -33,28 +40,47 @@ export function DirectoryListItem({
   const IconBefore = iconBefore!;
   const IconAfter = iconAfter!;
 
-  const getWidth = () => {
-    switch (width) {
-      case "sm": return "w-48";
-      case "md": return "w-64";
-      case "lg": return "w-80";
-      case "full": return "w-full";
-    }
-  };
+  const widthClass = {
+    sm: "w-48",
+    md: "w-64",
+    lg: "w-80",
+    full: "w-full",
+  } satisfies { [K in ElementWidth]: string };
 
   return (
-    <li className={`group flex ${getWidth()}`}>
-      <button className="flex place-items-center w-full py-1.5 px-2 justify-between hover:bg-zinc-500/20 rounded-md">
+    <li className={`group flex ${widthClass[width]}`}>
+      <button
+        className={`
+          flex place-items-center w-full py-1.5 px-2 justify-between rounded-md
+          hover:bg-zinc-500/20 ${active ? "bg-zinc-500/20" : "bg-[#111111]"}
+          transition-colors duration-150
+        `}
+      >
         <div className="flex gap-2 place-items-center">
           {iconBefore ? (
-            <IconBefore className="w-4 h-4 text-zinc-400 group-hover:text-zinc-100 transition-all duration-100" />
+            <IconBefore
+              className={`
+                w-4 h-4 ${active ? "text-zinc-100" : "text-zinc-400"}
+                group-hover:text-zinc-100 transition-colors duration-150
+              `}
+            />
           ) : null}
-          <span className="text-zinc-400 text-sm select-none group-hover:text-zinc-100 transition-all duration-100">
+          <span
+            className={`
+            text-sm select-none ${active ? "text-zinc-100" : "text-zinc-400"}
+            group-hover:text-zinc-100 transition-colors duration-150
+            `}
+          >
             {label}
           </span>
         </div>
         {iconAfter ? (
-          <IconAfter className="w-4 h-4 text-zinc-400 group-hover:text-zinc-100 transition-all duration-100" />
+          <IconAfter
+            className={`
+              w-4 h-4 ${active ? "text-zinc-100 rotate-90" : "text-zinc-400"}
+              group-hover:text-zinc-100 transition-all duration-150
+            `}
+          />
         ) : null}
       </button>
     </li>
