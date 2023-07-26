@@ -3,10 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 import { v4 as uuid } from "uuid";
 
-export enum NodeType {
-  DIRECTORY,
-  FILE,
-}
+export type NodeType = "DIRECTORY" | "FILE";
 
 export type Node = {
   id: string;
@@ -34,7 +31,7 @@ const initialState: FileExplorerState = {
       name: "root",
       path: "/root",
       description: "Start of the directory",
-      type: NodeType.DIRECTORY,
+      type: "DIRECTORY",
     },
     children: [],
   },
@@ -64,7 +61,7 @@ export const fileExplorerSlice = createSlice({
           name: fileName,
           path: `${state.rootNode.metadata.path}/${fileName}`,
           description: "",
-          type: NodeType.FILE,
+          type: "FILE",
         },
         children: [],
       };
@@ -86,7 +83,7 @@ export const fileExplorerSlice = createSlice({
           name: folderName,
           path: `${state.rootNode.metadata.path}/${folderName}`,
           description: "",
-          type: NodeType.DIRECTORY,
+          type: "DIRECTORY",
         },
         children: [],
       };
@@ -112,7 +109,7 @@ export function byDirectoryAndLexicographical(a: Node, b: Node) {
   const bType = b.metadata.type;
 
   // Directories first
-  if (aType !== bType) return aType === NodeType.DIRECTORY ? -1 : 1;
+  if (aType !== bType) return aType === "DIRECTORY" ? -1 : 1;
 
   const aName = a.metadata.name;
   const bName = a.metadata.name;
