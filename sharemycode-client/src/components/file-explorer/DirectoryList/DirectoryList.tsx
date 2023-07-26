@@ -8,11 +8,11 @@ interface DirectoryListProps {
   /**
    * The nodes to render in a directory list
    */
-  nodes: Node[];
+  nodes?: Node[];
   /**
    * The level of nesting for this directory list
    */
-  level: number;
+  level?: number;
 }
 
 export function DirectoryList({
@@ -39,6 +39,7 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
       <DirectoryListItem
         key={`dir-${node.id}`}
         active={isActive}
+        width="full"
         label={node.metadata.name}
         iconBefore={FaFolder}
         iconAfter={PiCaretRightBold}
@@ -60,6 +61,7 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
   ) : (
     <DirectoryListItem
       key={`file-${node.id}`}
+      width="full"
       label={node.metadata.name}
       iconBefore={FaFile}
     />
