@@ -1,8 +1,9 @@
+import { Node } from "@/state/file-explorer/fileExplorerSlice";
 import React from "react";
-import { Node } from "@/state/file-explorer/fileExplorerSlice"
-import { DirectoryListItem } from "../DirectoryListItem";
 import { FaFile, FaFolder } from "react-icons/fa";
 import { PiCaretRightBold } from "react-icons/pi";
+import { DirectoryListItem } from "../DirectoryListItem";
+import { DirectoryContextMenu, FileContextMenu } from "../context-menus";
 
 interface DirectoryListProps {
   /**
@@ -36,14 +37,18 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
 
   return type === "DIRECTORY" ? (
     <>
-      <DirectoryListItem
-        key={`dir-${node.id}`}
-        active={isActive}
-        width="full"
-        label={node.metadata.name}
-        iconBefore={FaFolder}
-        iconAfter={PiCaretRightBold}
-        onClick={toggleActive}
+      <DirectoryContextMenu
+        trigger={
+          <DirectoryListItem
+            key={`dir-${node.id}`}
+            active={isActive}
+            width="full"
+            label={node.metadata.name}
+            iconBefore={FaFolder}
+            iconAfter={PiCaretRightBold}
+            onLeftClick={toggleActive}
+          />
+        }
       />
       <li
         className={`
@@ -60,11 +65,15 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
       </li>
     </>
   ) : (
-    <DirectoryListItem
-      key={`file-${node.id}`}
-      width="full"
-      label={node.metadata.name}
-      iconBefore={FaFile}
+    <FileContextMenu
+      trigger={
+        <DirectoryListItem
+          key={`file-${node.id}`}
+          width="full"
+          label={node.metadata.name}
+          iconBefore={FaFile}
+        />
+      }
     />
   );
 }

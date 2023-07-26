@@ -25,9 +25,13 @@ interface DirectoryListItemProps {
    */
   iconAfter?: IconType;
   /**
-   * Optional click handler
+   * Optional left click handler
    */
-  onClick?: () => void;
+  onLeftClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
+  /**
+   * Optional right click handler
+   */
+  onRightClick?: (e: React.MouseEvent<HTMLLIElement>) => void;
 }
 
 export function DirectoryListItem({
@@ -36,7 +40,8 @@ export function DirectoryListItem({
   width = "md",
   iconBefore,
   iconAfter,
-  onClick,
+  onLeftClick = () => {},
+  onRightClick = () => {}
 }: DirectoryListItemProps): React.ReactNode {
   const IconBefore = iconBefore!;
   const IconAfter = iconAfter!;
@@ -50,7 +55,11 @@ export function DirectoryListItem({
   } satisfies { [K in ElementWidth]: string };
 
   return (
-    <li className={`my-0.5 group flex ${widthClass[width]}`} onClick={onClick}>
+    <li
+      className={`my-0.5 group flex ${widthClass[width]}`}
+      onClick={onLeftClick}
+      onContextMenu={onRightClick}
+    >
       <button
         className={`
           flex place-items-center w-full py-1.5 px-2 justify-between rounded-md
