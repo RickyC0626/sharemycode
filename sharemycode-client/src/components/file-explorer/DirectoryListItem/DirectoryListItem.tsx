@@ -56,7 +56,7 @@ export function DirectoryListItem({
 
   return (
     <li
-      className={`my-0.5 group flex ${widthClass[width]}`}
+      className={`group flex ${widthClass[width]}`}
       onClick={onLeftClick}
       onContextMenu={onRightClick}
     >

@@ -21,7 +21,7 @@ export function DirectoryList({
   level = 0,
 }: DirectoryListProps): React.ReactNode {
   return (
-    <ul className={`overflow-hidden ${level > 0 ? "ml-4" : null}`}>
+    <ul className={`flex flex-col gap-1 overflow-hidden ${level > 0 ? "ml-4" : ""}`}>
       {nodes.map((node) => (
         <DirectoryListItemWrapper key={node.id} node={node} />
       ))}
@@ -36,7 +36,7 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
   const toggleActive = () => setActive(!isActive);
 
   return type === "DIRECTORY" ? (
-    <>
+    <div className={`flex flex-col ${isActive && node.children.length > 0 ? "space-y-1" : ""}`}>
       <DirectoryContextMenu
         node={node}
         trigger={
@@ -64,7 +64,7 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
           level={node.level + 1}
         />
       </li>
-    </>
+    </div>
   ) : (
     <FileContextMenu
       trigger={
