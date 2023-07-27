@@ -1,13 +1,32 @@
+import React from "react";
 import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from "../../ui/context-menu";
+import { useAppDispatch } from "@/state/hooks";
+import { Node, createFile, createFolder } from "@/state/file-explorer/fileExplorerSlice";
 
-export function DirectoryContextMenu({ trigger }: { trigger: React.ReactNode }) {
+export function DirectoryContextMenu({
+  node,
+  trigger
+}: {
+  node: Node;
+  trigger: React.ReactNode;
+}) {
+  const dispatch = useAppDispatch();
+
+  const handleClickNewFile = () => {
+    dispatch(createFile({ path: node.path }));
+  };
+
+  const handleClickNewDirectory = () => {
+    dispatch(createFolder({ path: node.path }))
+  };
+
   return (
     <ContextMenu>
       <ContextMenuTrigger>{trigger}</ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuGroup>
-          <ContextMenuItem>New File</ContextMenuItem>
-          <ContextMenuItem>New Directory</ContextMenuItem>
+          <ContextMenuItem onClick={handleClickNewFile}>New File</ContextMenuItem>
+          <ContextMenuItem onClick={handleClickNewDirectory}>New Directory</ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>

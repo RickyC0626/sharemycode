@@ -30,7 +30,7 @@ export function DirectoryList({
 }
 
 function DirectoryListItemWrapper({ node }: { node: Node }) {
-  const type = node.metadata.type;
+  const type = node.type;
 
   const [isActive, setActive] = React.useState(false);
   const toggleActive = () => setActive(!isActive);
@@ -38,12 +38,13 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
   return type === "DIRECTORY" ? (
     <>
       <DirectoryContextMenu
+        node={node}
         trigger={
           <DirectoryListItem
             key={`dir-${node.id}`}
             active={isActive}
             width="full"
-            label={node.metadata.name}
+            label={node.name}
             iconBefore={FaFolder}
             iconAfter={PiCaretRightBold}
             onLeftClick={toggleActive}
@@ -70,7 +71,7 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
         <DirectoryListItem
           key={`file-${node.id}`}
           width="full"
-          label={node.metadata.name}
+          label={node.name}
           iconBefore={FaFile}
         />
       }

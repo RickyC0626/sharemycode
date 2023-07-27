@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DirectoryList } from "./DirectoryList";
+import Providers from "@/components/redux/Providers";
 
 const meta: Meta<typeof DirectoryList> = {
   title: "File Explorer/Directory List",
@@ -25,9 +26,11 @@ type Story = StoryObj<typeof DirectoryList>;
 
 function WidthWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className="w-64">
-      {children}
-    </div>
+    <Providers>
+      <div className="w-64">
+        {children}
+      </div>
+    </Providers>
   );
 }
 
