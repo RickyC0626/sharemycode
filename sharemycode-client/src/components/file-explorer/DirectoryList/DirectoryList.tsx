@@ -67,6 +67,7 @@ function DirectoryListItemWrapper({ node }: { node: Node }) {
     </div>
   ) : (
     <FileContextMenu
+      node={node}
       trigger={
         <DirectoryListItem
           key={`file-${node.id}`}

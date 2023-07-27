@@ -1,7 +1,7 @@
 import React from "react";
 import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from "../../ui/context-menu";
 import { useAppDispatch } from "@/state/hooks";
-import { Node, createFile, createFolder } from "@/state/file-explorer/fileExplorerSlice";
+import { Node, createFile, createFolder, deleteNode } from "@/state/file-explorer/fileExplorerSlice";
 
 export function DirectoryContextMenu({
   node,
@@ -20,6 +20,10 @@ export function DirectoryContextMenu({
     dispatch(createFolder({ path: node.path }))
   };
 
+  const handleClickDelete = () => {
+    dispatch(deleteNode({ path: node.path }));
+  };
+
   return (
     <ContextMenu>
       <ContextMenuTrigger>{trigger}</ContextMenuTrigger>
@@ -32,7 +36,7 @@ export function DirectoryContextMenu({
         <ContextMenuGroup>
           <ContextMenuItem>Rename</ContextMenuItem>
           <ContextMenuItem>Move To</ContextMenuItem>
-          <ContextMenuItem>Delete</ContextMenuItem>
+          <ContextMenuItem onClick={handleClickDelete}>Delete</ContextMenuItem>
         </ContextMenuGroup>
       </ContextMenuContent>
     </ContextMenu>

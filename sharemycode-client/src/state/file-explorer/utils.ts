@@ -3,22 +3,14 @@ import { Node } from "./fileExplorerSlice";
 export const createUniqueName = (parent: Node, name: string): string => {
   const existingNames = parent.children.map((child) => child.name);
 
-  const getHighestDuplicateCount = (names: string[], name: string): number => {
-    // Pattern to find existing duplicates like "New Folder (1)", "New Folder (2)"
-    const pattern = new RegExp(`${name} \\((\\d+)\\)`);
+  let count = 0;
+  let newName = `${name}`
 
-    const numDupes = names.reduce((acc, currName) => {
-      const match = currName.match(pattern);
+  while (existingNames.includes(newName)) {
+    newName = `${name} (${++count})`
+  }
 
-      return match ? acc + 1 : acc;
-    }, 0);
-
-    return numDupes;
-  };
-
-  const count = getHighestDuplicateCount(existingNames, name);
-
-  return existingNames.length === 0 ? name : `${name} (${count + 1})`;
+  return newName;
 };
 
 export function findNodeByPath(node: Node, paths: string[]): Node {
@@ -49,8 +41,8 @@ export function byDirectoryAndLexicographical(a: Node, b: Node) {
   if (aType !== bType) return aType === "DIRECTORY" ? -1 : 1;
 
   const aName = a.name;
-  const bName = a.name;
+  const bName = b.name;
 
   // Lexicographical order
-  return aName > bName ? -1 : aName < bName ? 1 : 0;
+  return aName.localeCompare(bName);
 }

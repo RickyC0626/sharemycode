@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 import { RootState } from "../store";
-import { createFileReducer, createFolderReducer } from "./reducers";
+import { createFileReducer, createFolderReducer, deleteNodeReducer } from "./reducers";
 
 export type NodeType = "DIRECTORY" | "FILE";
 
@@ -49,10 +49,8 @@ export const fileExplorerSlice = createSlice({
     createFile: createFileReducer,
     // Create a new folder in database
     createFolder: createFolderReducer,
-    // Delete an existing node
-    deleteNode: (state) => {
-
-    },
+    // Delete an existing node (file or folder)
+    deleteNode: deleteNodeReducer,
     // Updates the name and path of the node
     updateNodeName: (state) => {
 
