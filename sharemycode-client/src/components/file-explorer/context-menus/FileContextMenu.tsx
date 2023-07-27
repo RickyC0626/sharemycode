@@ -1,6 +1,7 @@
 import { Node, deleteNode } from "@/state/file-explorer/fileExplorerSlice";
-import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from "../../ui/context-menu";
 import { useAppDispatch } from "@/state/hooks";
+import { BookOpen, FileOutput, Pencil, Trash2 } from "lucide-react";
+import { ContextMenu, ContextMenuContent, ContextMenuGroup, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from "../../ui/context-menu";
 
 export function FileContextMenu({
   node,
@@ -20,13 +21,25 @@ export function FileContextMenu({
       <ContextMenuTrigger>{trigger}</ContextMenuTrigger>
       <ContextMenuContent>
         <ContextMenuGroup>
-          <ContextMenuItem>Open</ContextMenuItem>
+          <ContextMenuItem className="flex gap-3">
+            <BookOpen className="w-4 h-4" />
+            <span>Open</span>
+          </ContextMenuItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
-          <ContextMenuItem>Rename</ContextMenuItem>
-          <ContextMenuItem>Move To</ContextMenuItem>
-          <ContextMenuItem onClick={handleClickDelete}>Delete</ContextMenuItem>
+          <ContextMenuItem className="flex gap-3">
+            <Pencil className="w-4 h-4" />
+            <span>Rename</span>
+          </ContextMenuItem>
+          <ContextMenuItem className="flex gap-3">
+            <FileOutput className="w-4 h-4" />
+            <span>Move To</span>
+          </ContextMenuItem>
+          <ContextMenuItem onClick={handleClickDelete} className="flex gap-3">
+            <Trash2 className="w-4 h-4" />
+            <span>Delete</span>
+          </ContextMenuItem>
         </ContextMenuGroup>
       </ContextMenuContent>
     </ContextMenu>
