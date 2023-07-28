@@ -3,6 +3,7 @@ import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
+import apiRouter from "./routes";
 
 const server: Express = express();
 
@@ -19,6 +20,8 @@ server.use(express.urlencoded({ extended: false }));
 server.get("/", (req: Request, res: Response) => {
   res.send("ShareMyCode 2.0 | API Server");
 });
+
+server.use("/api", apiRouter);
 
 server.get("/health", (req: Request, res: Response) => {
   res.status(200).send("Healthy!");
