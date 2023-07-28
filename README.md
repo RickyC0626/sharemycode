@@ -1,14 +1,18 @@
-# ShareMyCode
-ShareMyCode 2.0 - An alternative to codeshare.io
+# ShareMyCode (To Be Renamed)
+Original idea: alternative to codeshare.io and CodeSandbox
 
-[Link to original idea made for a hackathon in Fall 2020](https://github.com/RickyC0626-forks/sharemycode)
+Idea pivot: real-time markdown editor for collaborative knowledge management
+- Inspired by Hashnode, an alternative somewhere in between Notion and Obsidian
+  - **Notion:** easy to use, proprietary data format, hard to migrate data to another platform
+  - **Obsidian:** flexible but higher maintenance, open data format, easy to migrate markdown files to another platform, limited collaborative solutions
+  - **Our solution:** easy to use like Notion, open data format and data ownership like Obsidian, flexibility of both Notion and Obsidian, with collaborative hosting solution
+- Users can collaborate on a central server but own all their data
+- Can make backups to GitHub
 
 ## Roadmap
 
-- [X] Code editor (using CodeMirror)
+- [X] Markdown editor (using CodeMirror)
   - [X] Syntax highlighting
-    - [ ] Detect using file name
-    - [X] Detect using selected language mode
   - [X] Line numbers
   - [/] File explorer
     - [/] Create new file
@@ -16,12 +20,13 @@ ShareMyCode 2.0 - An alternative to codeshare.io
         - [ ] If clicked outside or pressed 'Esc', cancel form
         - [ ] Validate allowed file name for major operating systems
         - [ ] Submit form if valid file name is given
-      - [/] Create file node in database
-        - [ ] By default, nest under root node
-        - [ ] If new file created under a different folder node, nest the file node under that
-        - [ ] Create path to file node from root node as unique string identifier
+      - [X] Create file node in database
+        - [X] By default, nest under root node
+        - [X] If new file created under a different folder node, nest the file node under that
+        - [X] Create path to file node from root node as unique string identifier
     - [/] Create new folder
   - [/] Opened file header tabs
+- [ ] Live preview
 - [ ] Real-time collaboration (using Liveblocks)
   - [ ] User list
   - [ ] [Live carets](https://liveblocks.io/presence) in editor
